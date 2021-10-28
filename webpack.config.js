@@ -1,8 +1,16 @@
-module.exports = {
-    mode: "development",
+let mode = "development";
+if (process.env.NODE_ENV == 'production') {
+    mode = "production"
+}
 
-    /* For development output in main.js */
-    devtool: false,
+module.exports = {
+    mode: mode,
+
+    /* For development output in main.js 
+       For developer friendly output => False
+       For source map => 'source-map'
+    */
+    devtool: "source-map",
 
     /* All rules comes under module */
     module: {
