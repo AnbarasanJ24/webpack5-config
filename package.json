@@ -2,9 +2,8 @@
   "name": "webpack5-config",
   "version": "1.0.0",
   "description": "This project created for common functionalities needed in a Webpack project as",
-  "main": "index.js",
   "scripts": {
-    "start": "webpack server",
+    "start": "webpack serve",
     "watch": "webpak --watch",
     "build": "SET NODE_ENV=production&  webpack",
     "build-dev": "webpack"
@@ -24,6 +23,9 @@
     "@babel/core": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
     "babel-loader": "^8.2.3",
+    "css-loader": "^6.5.0",
+    "html-webpack-plugin": "^5.5.0",
+    "style-loader": "^3.3.1",
     "webpack": "^5.60.0",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.3.1",

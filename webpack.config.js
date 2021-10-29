@@ -1,37 +1,61 @@
+const path = require('path');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+
 let mode = "development";
 if (process.env.NODE_ENV == 'production') {
     mode = "production"
 }
 
 module.exports = {
+
     mode: mode,
 
-    /* For development output in main.js 
-       For developer friendly output => False
-       For source map => 'source-map'
-    */
-    devtool: "source-map",
+    devtool: "inline-source-map",
+    devServer: {
+        static: './dist',
+        port: 5001,
+        open: true,
+        hot: true
+    },
 
-    /* All rules comes under module */
+    entry: {
+        main: path.resolve(__dirname, 'src/app.js')
+    },
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].[contenthash].js',
+        clean: true
+    },
+
     module: {
         rules: [
-            /* Babel rules first check all Js files using regex 
-               Exclude node_modules in this process
-               transpile the code using babel-loader
-               Babel config file is required
-            */
             {
-                test: /\.js$/,  //Ends with JS file
+                test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: "babel-loader"
+                    loader: "babel-loader",
+                    options: {
+                        presets: ["@babel/preset-env"]
+                    }
                 }
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.(svg|ico|png|jpeg|jpg|gif|webp)$/,
+                type: 'asset/resource'
             }
         ]
     },
 
-    /* Support Live Reloading */
-    devServer: {
-        static: "./dist"
-    }
+    plugins: [
+        new HtmlWebPackPlugin({
+            title: "Starting",
+            filename: "index.html",
+            // We can create our own template and use ablove values
+            template: path.resolve(__dirname, 'src/temp.html')
+        })
+    ]
 };
