@@ -1,7 +1,8 @@
 Webpack
     1. Its a module bundler that means take all files (HTML, CSS, JS) files from different modules
     then bundle it together and optimize it for production use 
-    2. It will bundle the files and move it to dist (distribution) folder for direct production use 
+    2. It also manage the order of dependencies, code needs to first run will run first 
+    3. It will bundle the files and move it to dist (distribution) folder for direct production use 
 
 # Required Packages
     webpack => npm i -D webpack webpack-cli webpack-dev-server (Handles all core bundling core)
